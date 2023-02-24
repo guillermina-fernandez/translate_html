@@ -19,8 +19,13 @@ translator = Translator(service_urls=['translate.googleapis.com'])
 
 
 def translate(old_text):
-    new_text = translator.translate(old_text, dest='es').text
-    return new_text
+    while True:
+        try:
+            new_text = translator.translate(old_text, dest='es').text
+            return new_text
+        except:
+            print("Waiting for google translate...")
+            time.sleep(5)
 
 
 
